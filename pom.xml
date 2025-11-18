@@ -47,21 +47,21 @@
       <version>5.0.9</version>
     </dependency>
 
-    <!-- WebDriverManager (automatic driver downloads) -->
+    <!-- WebDriverManager -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
       <version>5.4.1</version>
     </dependency>
 
-    <!-- CSV Parsing (for data-driven tests) -->
+    <!-- CSV parsing -->
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-csv</artifactId>
       <version>1.10.0</version>
     </dependency>
 
-    <!-- JSON Parsing -->
+    <!-- Jackson JSON -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
@@ -80,19 +80,20 @@
   <build>
     <plugins>
 
-      <!-- Java Compiler -->
+      <!-- Compiler plugin - annotation processors disabled -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.13.0</version>
         <configuration>
           <release>17</release>
-          <annotationProcessorPaths/>
+          <compilerArgs>
+            <arg>-proc:none</arg>
+          </compilerArgs>
         </configuration>
       </plugin>
 
-
-      <!-- TestNG Runner -->
+      <!-- Surefire plugin (TestNG runner) -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
