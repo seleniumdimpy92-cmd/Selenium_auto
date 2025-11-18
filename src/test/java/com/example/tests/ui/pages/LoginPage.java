@@ -3,6 +3,11 @@ package com.example.tests.ui.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.*;
+import java.time.Duration;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+
 
 public class LoginPage {
     private WebDriver driver;
@@ -20,11 +25,25 @@ public class LoginPage {
     }
 
     public void login(String user, String pass) {
-        driver.findElement(username).clear();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(username)).clear();
         driver.findElement(username).sendKeys(user);
-        driver.findElement(password).clear();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(password)).clear();
         driver.findElement(password).sendKeys(pass);
-        driver.findElement(loginBtn).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(loginBtn)).click();
+
+        // wait for flash message or redirect
+        try {
+            wait.until(ExpectedConditions.or(
+                ExpectedConditions.urlContains("/secure"),
+                ExpectedConditions.visibilityOfElementLocated(By.id("flash"))
+            ));
+        } catch (Exception e) {
+            // ignore
+        }
     }
 
     public boolean isErrorDisplayed() {

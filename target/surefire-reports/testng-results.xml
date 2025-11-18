@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-11-18T22:12:34 IST" name="AutomationSuite" finished-at="2025-11-18T22:12:49 IST" duration-ms="15471">
+    <groups>
+    </groups>
+    <test started-at="2025-11-18T22:12:34 IST" name="API Tests" finished-at="2025-11-18T22:12:34 IST" duration-ms="764">
+      <class name="com.example.tests.api.tests.ApiHappyPathTest">
+        <test-method is-config="true" signature="init()[pri:0, instance:com.example.tests.api.tests.ApiHappyPathTest@1ffaf86]" started-at="2025-11-18T22:12:34 IST" name="init" finished-at="2025-11-18T22:12:34 IST" duration-ms="119" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method signature="getPostHappyPath()[pri:0, instance:com.example.tests.api.tests.ApiHappyPathTest@1ffaf86]" started-at="2025-11-18T22:12:34 IST" name="getPostHappyPath" finished-at="2025-11-18T22:12:34 IST" duration-ms="590" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getPostHappyPath -->
+      </class> <!-- com.example.tests.api.tests.ApiHappyPathTest -->
+      <class name="com.example.tests.api.tests.ApiNegativeTest">
+        <test-method is-config="true" signature="init()[pri:0, instance:com.example.tests.api.tests.ApiNegativeTest@6574a52c]" started-at="2025-11-18T22:12:34 IST" name="init" finished-at="2025-11-18T22:12:34 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method signature="notFoundTest()[pri:0, instance:com.example.tests.api.tests.ApiNegativeTest@6574a52c]" started-at="2025-11-18T22:12:34 IST" name="notFoundTest" finished-at="2025-11-18T22:12:34 IST" duration-ms="47" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- notFoundTest -->
+      </class> <!-- com.example.tests.api.tests.ApiNegativeTest -->
+    </test> <!-- API Tests -->
+    <test started-at="2025-11-18T22:12:34 IST" name="UI Tests" finished-at="2025-11-18T22:12:49 IST" duration-ms="15471">
+      <class name="com.example.tests.ui.tests.LoginFailureTest">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.example.tests.ui.tests.LoginFailureTest@2d710f1a]" started-at="2025-11-18T22:12:39 IST" name="setUp" finished-at="2025-11-18T22:12:40 IST" duration-ms="544" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[normal]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="loginFailure()[pri:0, instance:com.example.tests.ui.tests.LoginFailureTest@2d710f1a]" started-at="2025-11-18T22:12:40 IST" name="loginFailure" finished-at="2025-11-18T22:12:43 IST" duration-ms="3848" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailure -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.example.tests.ui.tests.LoginFailureTest@2d710f1a]" started-at="2025-11-18T22:12:40 IST" name="beforeMethod" finished-at="2025-11-18T22:12:40 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.example.tests.ui.tests.LoginFailureTest.loginFailure()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="tearDownMethod(org.testng.ITestResult)[pri:0, instance:com.example.tests.ui.tests.LoginFailureTest@2d710f1a]" started-at="2025-11-18T22:12:43 IST" name="tearDownMethod" finished-at="2025-11-18T22:12:43 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginFailure status=SUCCESS method=LoginFailureTest.loginFailure()[pri:0, instance:com.example.tests.ui.tests.LoginFailureTest@2d710f1a] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownMethod -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.example.tests.ui.tests.LoginFailureTest@2d710f1a]" started-at="2025-11-18T22:12:43 IST" name="tearDown" finished-at="2025-11-18T22:12:44 IST" duration-ms="140" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.example.tests.ui.tests.LoginFailureTest -->
+      <class name="com.example.tests.ui.tests.LoginSuccessTest">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.example.tests.ui.tests.LoginSuccessTest@51e69659]" started-at="2025-11-18T22:12:34 IST" name="setUp" finished-at="2025-11-18T22:12:35 IST" duration-ms="1578" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[normal]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.example.tests.ui.tests.LoginSuccessTest@51e69659]" started-at="2025-11-18T22:12:35 IST" name="beforeMethod" finished-at="2025-11-18T22:12:35 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.example.tests.ui.tests.LoginSuccessTest.loginSuccess()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="loginSuccess()[pri:0, instance:com.example.tests.ui.tests.LoginSuccessTest@51e69659]" started-at="2025-11-18T22:12:35 IST" name="loginSuccess" finished-at="2025-11-18T22:12:39 IST" duration-ms="3717" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginSuccess -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.example.tests.ui.tests.LoginSuccessTest@51e69659]" started-at="2025-11-18T22:12:39 IST" name="tearDown" finished-at="2025-11-18T22:12:39 IST" duration-ms="207" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDownMethod(org.testng.ITestResult)[pri:0, instance:com.example.tests.ui.tests.LoginSuccessTest@51e69659]" started-at="2025-11-18T22:12:39 IST" name="tearDownMethod" finished-at="2025-11-18T22:12:39 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginSuccess status=SUCCESS method=LoginSuccessTest.loginSuccess()[pri:0, instance:com.example.tests.ui.tests.LoginSuccessTest@51e69659] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownMethod -->
+      </class> <!-- com.example.tests.ui.tests.LoginSuccessTest -->
+      <class name="com.example.tests.ui.tests.LoginDataDrivenTest">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.example.tests.ui.tests.LoginDataDrivenTest@29215f06]" started-at="2025-11-18T22:12:44 IST" name="setUp" finished-at="2025-11-18T22:12:44 IST" duration-ms="542" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[normal]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="loginDataDriven(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.example.tests.ui.tests.LoginDataDrivenTest@29215f06]" started-at="2025-11-18T22:12:44 IST" name="loginDataDriven" data-provider="loginData" finished-at="2025-11-18T22:12:48 IST" duration-ms="3864" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[tomsmith]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[SuperSecretPassword!]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[success]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginDataDriven -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.example.tests.ui.tests.LoginDataDrivenTest@29215f06]" started-at="2025-11-18T22:12:44 IST" name="beforeMethod" finished-at="2025-11-18T22:12:44 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.example.tests.ui.tests.LoginDataDrivenTest.loginDataDriven(java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="tearDownMethod(org.testng.ITestResult)[pri:0, instance:com.example.tests.ui.tests.LoginDataDrivenTest@29215f06]" started-at="2025-11-18T22:12:48 IST" name="tearDownMethod" finished-at="2025-11-18T22:12:48 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginDataDriven status=SUCCESS method=LoginDataDrivenTest.loginDataDriven(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.example.tests.ui.tests.LoginDataDrivenTest@29215f06] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownMethod -->
+        <test-method signature="loginDataDriven(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.example.tests.ui.tests.LoginDataDrivenTest@29215f06]" started-at="2025-11-18T22:12:48 IST" name="loginDataDriven" data-provider="loginData" finished-at="2025-11-18T22:12:49 IST" duration-ms="894" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[wronguser]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[wrongpass]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[error]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginDataDriven -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.example.tests.ui.tests.LoginDataDrivenTest@29215f06]" started-at="2025-11-18T22:12:48 IST" name="beforeMethod" finished-at="2025-11-18T22:12:48 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.example.tests.ui.tests.LoginDataDrivenTest.loginDataDriven(java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.example.tests.ui.tests.LoginDataDrivenTest@29215f06]" started-at="2025-11-18T22:12:49 IST" name="tearDown" finished-at="2025-11-18T22:12:49 IST" duration-ms="124" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDownMethod(org.testng.ITestResult)[pri:0, instance:com.example.tests.ui.tests.LoginDataDrivenTest@29215f06]" started-at="2025-11-18T22:12:49 IST" name="tearDownMethod" finished-at="2025-11-18T22:12:49 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginDataDriven status=SUCCESS method=LoginDataDrivenTest.loginDataDriven(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.example.tests.ui.tests.LoginDataDrivenTest@29215f06] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownMethod -->
+      </class> <!-- com.example.tests.ui.tests.LoginDataDrivenTest -->
+    </test> <!-- UI Tests -->
+  </suite> <!-- AutomationSuite -->
+</testng-results>
