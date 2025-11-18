@@ -12,6 +12,14 @@ public class LoginFailureTest extends BaseTest {
         LoginPage page = new LoginPage(driver);
         page.open("https://the-internet.herokuapp.com/login");
         page.login("wronguser", "wrongpass");
-        Assert.assertTrue(page.isErrorDisplayed(), "Error message should be displayed for invalid credentials");
+
+        boolean err = page.isErrorDisplayed();
+
+        Assert.assertTrue(
+                err,
+                "Expected error message for invalid credentials but none found."
+                        + "\nFlash text: " + page.getFlashText()
+                        + "\nFlash HTML: " + page.debugFlashHtml()
+        );
     }
 }

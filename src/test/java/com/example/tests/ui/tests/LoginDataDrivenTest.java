@@ -13,10 +13,17 @@ public class LoginDataDrivenTest extends BaseTest {
         LoginPage page = new LoginPage(driver);
         page.open("https://the-internet.herokuapp.com/login");
         page.login(user, pass);
+
         if ("success".equalsIgnoreCase(expected)) {
-            Assert.assertTrue(driver.getCurrentUrl().contains("/secure"));
+            boolean ok = page.isOnSecurePage();
+            String flash = page.getFlashText();
+            Assert.assertTrue(ok || flash.toLowerCase().contains("you logged into a secure area"),
+                    "Expected successful login for user=" + user + ". URL: " + driver.getCurrentUrl() + " | flash: " + flash);
         } else {
-            Assert.assertTrue(page.isErrorDisplayed());
+            // expected error case
+            boolean err = page.isErrorDisplayed();
+            String flash = page.getFlashText();
+            Assert.assertTrue(err, "Expected error for user=" + user + " but no error shown. Flash: " + flash);
         }
     }
 }

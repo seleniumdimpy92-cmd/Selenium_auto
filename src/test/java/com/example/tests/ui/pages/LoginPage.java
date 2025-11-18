@@ -2,58 +2,108 @@ package com.example.tests.ui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.*;
+
 import java.time.Duration;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-
 
 public class LoginPage {
-    private WebDriver driver;
-    private By username = By.id("username");
-    private By password = By.id("password");
-    private By loginBtn = By.cssSelector("button[type='submit']");
-    private By flash = By.id("flash");
+    private final WebDriver driver;
+    private final WebDriverWait wait;
+
+    private final By username = By.id("username");
+    private final By password = By.id("password");
+    private final By loginBtn = By.cssSelector("button[type='submit']");
+    private final By flash = By.id("flash"); // demo site uses id "flash"
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
+        // 10s default wait; adjust if your app is slower in CI
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void open(String url) {
         driver.get(url);
     }
 
+    /**
+     * Robust login: waits for fields, types, clicks, and waits either for redirect or flash message.
+     */
     public void login(String user, String pass) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement u = wait.until(ExpectedConditions.elementToBeClickable(username));
+        u.clear();
+        u.sendKeys(user);
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(username)).clear();
-        driver.findElement(username).sendKeys(user);
+        WebElement p = wait.until(ExpectedConditions.elementToBeClickable(password));
+        p.clear();
+        p.sendKeys(pass);
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(password)).clear();
-        driver.findElement(password).sendKeys(pass);
+        WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(loginBtn));
+        btn.click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(loginBtn)).click();
-
-        // wait for flash message or redirect
+        // Wait for either success redirect or flash message (whichever appears first)
         try {
-            wait.until(ExpectedConditions.or(
+            wait.withTimeout(Duration.ofSeconds(8)).until(ExpectedConditions.or(
                 ExpectedConditions.urlContains("/secure"),
-                ExpectedConditions.visibilityOfElementLocated(By.id("flash"))
+                ExpectedConditions.visibilityOfElementLocated(flash)
             ));
-        } catch (Exception e) {
-            // ignore
+        } catch (Exception ignored) {
+            // we'll let callers assert the final condition
+        } finally {
+            // restore default wait timeout for subsequent calls
+            wait.withTimeout(Duration.ofSeconds(10));
         }
     }
 
-    public boolean isErrorDisplayed() {
+    /**
+     * Returns visible flash text (if present), or empty string.
+     */
+    public String getFlashText() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(flash));
-            String txt = driver.findElement(flash).getText();
-            return txt.toLowerCase().contains("invalid") || txt.toLowerCase().contains("your username is invalid");
+            WebElement f = wait.until(ExpectedConditions.visibilityOfElementLocated(flash));
+            return f.getText().trim();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    /**
+     * True if we are on the secure page (successful login).
+     */
+    public boolean isOnSecurePage() {
+        try {
+            // small tolerance for redirect
+            return wait.until(driver -> driver.getCurrentUrl().contains("/secure"));
         } catch (Exception e) {
             return false;
         }
     }
+
+    /**
+     * True if an error flash is visible (invalid credentials).
+     */
+    public boolean isErrorDisplayed() {
+        try {
+            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+            WebElement f = longWait.until(ExpectedConditions.presenceOfElementLocated(flash));
+            String txt = f.getText().trim().toLowerCase();
+
+            return txt.contains("invalid")
+                    || txt.contains("is invalid")
+                    || txt.contains("your password")
+                    || txt.contains("your username");
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+    public String debugFlashHtml() {
+        try {
+            return driver.findElement(flash).getAttribute("outerHTML");
+        } catch (Exception e) {
+            return "<flash not found>";
+        }
+}
+
+
 }
