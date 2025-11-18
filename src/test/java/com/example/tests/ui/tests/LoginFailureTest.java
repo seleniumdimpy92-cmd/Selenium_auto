@@ -1,2 +1,17 @@
 package com.example.tests.ui.tests;
-public class LoginFailureTest {}
+
+import com.example.tests.ui.base.BaseTest;
+import com.example.tests.ui.pages.LoginPage;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class LoginFailureTest extends BaseTest {
+
+    @Test
+    public void loginFailure() {
+        LoginPage page = new LoginPage(driver);
+        page.open("https://the-internet.herokuapp.com/login");
+        page.login("wronguser", "wrongpass");
+        Assert.assertTrue(page.isErrorDisplayed(), "Error message should be displayed for invalid credentials");
+    }
+}
