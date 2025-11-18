@@ -87,8 +87,10 @@
         <version>3.13.0</version>
         <configuration>
           <release>17</release>
+          <annotationProcessorPaths/>
         </configuration>
       </plugin>
+
 
       <!-- TestNG Runner -->
       <plugin>
