@@ -1,30 +1,42 @@
 pipeline {
   agent any
 
-  // Run every 2 minutes
   triggers {
-    // H/2 is better for distributed scheduling; use "*/2 * * * *" if you prefer exact every-2-min.
-    cron('H/2 * * * *')
+    // runs every 2 minutes
+    cron('*/2 * * * *')
   }
 
   options {
-    // Do not run concurrent builds - avoids overlap if a previous run is still executing
-    disableConcurrentBuilds()
-    // Keep build logs for a week (adjust as needed)
-    buildDiscarder(logRotator(daysToKeepStr: '7'))
-    // Timeout long-running jobs (avoid hung executors)
+    disableConcurrentBuilds()   // avoid overlapping runs
     timeout(time: 10, unit: 'MINUTES')
+    buildDiscarder(logRotator(numToKeepStr: '20'))
   }
 
   stages {
+
     stage('Checkout') {
-      steps { checkout scm }
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Setup Chrome') {
+      steps {
+        sh '''
+          # Install Chrome if needed (Linux agent)
+          if ! command -v google-chrome &> /dev/null
+          then
+            echo "Installing Chrome..."
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt install -y ./google-chrome-stable_current_amd64.deb
+          fi
+        '''
+      }
     }
 
     stage('Run Tests') {
       steps {
-        // run headless to reduce resource usage
-        sh 'mvn -B -Denv=ci -DbrowserMode=headless clean test'
+        sh 'mvn -B clean test -DbrowserMode=headless'
       }
     }
 
@@ -37,8 +49,7 @@ pipeline {
 
   post {
     always {
-      // optional: publish junit xml if you produce surefire results
-      junit '**/target/surefire-reports/*.xml'
+      junit 'target/surefire-reports/*.xml'
     }
   }
 }
