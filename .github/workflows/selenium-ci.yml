@@ -6,28 +6,28 @@ on:
   pull_request:
     branches: ["main"]
   schedule:
-    - cron: "*/2 * * * *"     # Runs every 2 minutes
-  workflow_dispatch:           # Manual trigger
+    - cron: "*/2 * * * *"     # Run every 2 minutes
+  workflow_dispatch:           # Manual run
 
 concurrency:
   group: selenium-tests
-  cancel-in-progress: true     # Prevent overlapping builds
+  cancel-in-progress: true     # Cancel older runs
 
 jobs:
   run-tests:
-    runs-on: macos-latest      # macOS 15 ARM runner
+    runs-on: macos-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup Java 17
+    - name: Set up Java
       uses: actions/setup-java@v4
       with:
-        distribution: "temurin"
-        java-version: "17"
+        distribution: 'temurin'
+        java-version: '17'
 
-    - name: Cache Maven Repo
+    - name: Cache Maven dependencies
       uses: actions/cache@v4
       with:
         path: ~/.m2
@@ -35,17 +35,16 @@ jobs:
         restore-keys: |
           m2-${{ runner.os }}-
 
-    - name: Install Chrome (macOS 15 ARM)
+    - name: Install Chrome (macOS)
       run: |
-        brew update
         brew install --cask google-chrome
 
     - name: Run Selenium Tests
       run: mvn -B clean test -DbrowserMode=headless
 
-    - name: Upload Reports (ExtentReport + Screenshots)
+    - name: Upload Reports
       uses: actions/upload-artifact@v4
       with:
-        name: Selenium-Reports
+        name: selenium-reports
         path: reports/**
         if-no-files-found: warn
