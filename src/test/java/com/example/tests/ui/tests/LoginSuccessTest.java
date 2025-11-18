@@ -2,7 +2,7 @@ package com.example.tests.ui.tests;
 
 import com.example.tests.ui.base.BaseTest;
 import com.example.tests.ui.pages.LoginPage;
-import org.openqa.selenium.By;   // <-- REQUIRED IMPORT
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,18 +14,12 @@ public class LoginSuccessTest extends BaseTest {
         page.open("https://the-internet.herokuapp.com/login");
         page.login("tomsmith", "SuperSecretPassword!");
 
-        boolean redirected = driver.getCurrentUrl().contains("/secure");
-        String flash = "";
-
-        try { 
-            flash = driver.findElement(By.id("flash")).getText(); 
-        } catch (Exception ignore) {}
+        boolean redirected = page.isOnSecurePage();
+        String flash = page.getFlashText();
 
         Assert.assertTrue(
-                redirected || flash.contains("You logged into a secure area!"),
-                "Login did not succeed. Flash text: " + flash + 
-                " | URL: " + driver.getCurrentUrl()
+            redirected || flash.toLowerCase().contains("you logged into a secure area"),
+            "Login did not succeed. URL: " + driver.getCurrentUrl() + " | flash: " + flash
         );
     }
 }
-
