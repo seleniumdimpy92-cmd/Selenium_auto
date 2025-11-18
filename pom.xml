@@ -17,19 +17,19 @@
 
   <dependencies>
 
+    <!-- Selenium Java -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>4.11.0</version>
+    </dependency>
+
     <!-- TestNG -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>7.8.0</version>
       <scope>test</scope>
-    </dependency>
-
-    <!-- Selenium -->
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>4.11.0</version>
     </dependency>
 
     <!-- RestAssured -->
@@ -47,49 +47,40 @@
       <version>5.0.9</version>
     </dependency>
 
-    <!-- WebDriverManager -->
+    <!-- WebDriverManager (automatic driver downloads) -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
       <version>5.4.1</version>
     </dependency>
 
-    <!-- CSV handling -->
+    <!-- CSV Parsing (for data-driven tests) -->
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-csv</artifactId>
       <version>1.10.0</version>
     </dependency>
 
-    <!-- JSON (Jackson) -->
+    <!-- JSON Parsing -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>2.15.2</version>
     </dependency>
 
-    <!-- SLF4J simple logger -->
+    <!-- Simple SLF4J logger -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>2.0.9</version>
     </dependency>
 
-    <!-- JUnit XML support (optional for GitHub Actions) -->
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-launcher</artifactId>
-      <version>1.10.0</version>
-      <scope>test</scope>
-    </dependency>
-
   </dependencies>
-
 
   <build>
     <plugins>
 
-      <!-- Compiler plugin -->
+      <!-- Java Compiler -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -99,7 +90,7 @@
         </configuration>
       </plugin>
 
-      <!-- Maven Surefire for TestNG -->
+      <!-- TestNG Runner -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -109,6 +100,7 @@
             <suiteXmlFile>testng.xml</suiteXmlFile>
           </suiteXmlFiles>
           <useSystemClassLoader>false</useSystemClassLoader>
+          <testFailureIgnore>false</testFailureIgnore>
         </configuration>
       </plugin>
 
